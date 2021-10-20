@@ -1,0 +1,19 @@
+{% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    <link href="{% static "css/base.css" %}" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>{% translate "Page title" %}</title>
+</head>
+<body>
+{% include 'partials/_header.html' %}
+
+{% block content %} {% endblock %}
+
+{% include 'partials/_footer.html' %}
+</body>
+</html>

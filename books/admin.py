@@ -1,0 +1,67 @@
+from .models import *
+
+
+class DefaultModelAdmin(admin.ModelAdmin):
+    list_per_page = 100
+
+
+class PublisherAdmin(DefaultModelAdmin):
+    search_fields = ('name',)
+
+
+class ShelfAdmin(DefaultModelAdmin):
+    search_fields = ('cdd', 'description',)
+
+
+class SubjectAdmin(DefaultModelAdmin):
+    search_fields = ('cdd', 'description',)
+
+
+class TranslatorAdmin(DefaultModelAdmin):
+    search_fields = ('name',)
+
+
+class CollectionAdmin(DefaultModelAdmin):
+    search_fields = ('name', 'publisher',)
+
+
+class AuthorAdmin(DefaultModelAdmin):
+    search_fields = ('name',)
+
+
+class BookAdmin(DefaultModelAdmin):
+    list_display = (
+        'physical_id',
+        'isbn',
+        'title',
+        'authors_str',
+        'edition',
+        'year',
+        'subjects_str',
+        'shelf',
+        'publisher',
+        'collection',
+    )
+    list_display_links = ('physical_id', 'isbn', 'title',)
+    search_fields = (
+        'physical_id',
+        'title',
+        'isbn',
+        'pha',
+        'observations',
+        'authors__name',
+        'subjects__cdd',
+        'subjects__description',
+        'publisher__name',
+        'collection__name',
+        'collection__publisher__name',
+    )
+
+
+admin.site.register(Publisher, PublisherAdmin)
+admin.site.register(Shelf, ShelfAdmin)
+admin.site.register(Subject, SubjectAdmin)
+admin.site.register(Translator, TranslatorAdmin)
+admin.site.register(Collection, CollectionAdmin)
+admin.site.register(Author, AuthorAdmin)
+admin.site.register(Book, BookAdmin)

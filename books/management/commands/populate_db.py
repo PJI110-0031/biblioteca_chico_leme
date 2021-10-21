@@ -13,10 +13,10 @@ class Command(BaseCommand):
 
     def _populate_shelves(self):
         with open(Path(settings.BASE_DIR, 'books/management/commands/csv/shelves.csv'), mode='r') as csv_file:
-            csv_reader = csv.DictReader(csv_file)
+            csv_reader = csv.reader(csv_file)
 
             for row in csv_reader:
-                split_data = re.compile(r'[_\-–]').split(row['Nova Sequência 2016'], maxsplit=1)
+                split_data = re.compile(r'[_\-–]').split(row[0], maxsplit=1)
 
                 if len(split_data) == 2:
                     cdd = split_data[0]

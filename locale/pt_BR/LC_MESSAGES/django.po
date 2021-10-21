@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-21 00:52-0300\n"
+"POT-Creation-Date: 2021-10-21 01:51-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,11 +22,11 @@ msgstr ""
 msgid "Library"
 msgstr "Biblioteca"
 
-#: books/models.py:9 books/models.py:44 books/models.py:55 books/models.py:67
+#: books/models.py:9 books/models.py:52 books/models.py:63 books/models.py:75
 msgid "Name"
 msgstr "Nome"
 
-#: books/models.py:12 books/models.py:93 books/templates/index.html:13
+#: books/models.py:12 books/models.py:111 books/templates/index.html:13
 msgid "Publisher"
 msgstr "Editora"
 
@@ -34,15 +34,15 @@ msgstr "Editora"
 msgid "Publishers"
 msgstr "Editoras"
 
-#: books/models.py:20 books/models.py:32
+#: books/models.py:20 books/models.py:40
 msgid "CDD"
 msgstr "CDD"
 
-#: books/models.py:21 books/models.py:33
+#: books/models.py:21 books/models.py:41
 msgid "Description"
 msgstr "Descrição"
 
-#: books/models.py:24 books/models.py:98
+#: books/models.py:24 books/models.py:116
 msgid "Shelf"
 msgstr "Prateleira"
 
@@ -50,101 +50,101 @@ msgstr "Prateleira"
 msgid "Shelves"
 msgstr "Prateleiras"
 
-#: books/models.py:36
+#: books/models.py:44
 msgid "Subject"
 msgstr "Assunto"
 
-#: books/models.py:37 books/models.py:89 books/models.py:109
+#: books/models.py:45 books/models.py:107 books/models.py:127
 msgid "Subjects"
 msgstr "Assuntos"
 
-#: books/models.py:47
+#: books/models.py:55
 msgid "Translator"
 msgstr "Tradutor"
 
-#: books/models.py:48 books/models.py:86
+#: books/models.py:56 books/models.py:105
 msgid "Translators"
 msgstr "Tradutores"
 
-#: books/models.py:59 books/models.py:88 books/templates/index.html:14
+#: books/models.py:67 books/models.py:106 books/templates/index.html:14
 msgid "Collection"
 msgstr "Coleção"
 
-#: books/models.py:60
+#: books/models.py:68
 msgid "Collections"
 msgstr "Coleções"
 
-#: books/models.py:68
+#: books/models.py:76
 msgid "Year of birth"
 msgstr "Ano de nascimento"
 
-#: books/models.py:69
+#: books/models.py:77
 msgid "Year of death"
 msgstr "Ano de morte"
 
-#: books/models.py:70 books/models.py:97
+#: books/models.py:78 books/models.py:115
 msgid "PHA"
 msgstr "PHA"
 
-#: books/models.py:71
+#: books/models.py:79
 msgid "PHA Label"
 msgstr "PHA Etiqueta"
 
-#: books/models.py:72
+#: books/models.py:80
 #, fuzzy
 #| msgid "Observations"
 msgid "Observation"
 msgstr "Observações"
 
-#: books/models.py:75 books/templates/index.html:12
+#: books/models.py:83 books/templates/index.html:12
 msgid "Author"
 msgstr "Autor"
 
-#: books/models.py:76 books/models.py:85 books/models.py:105
+#: books/models.py:84 books/models.py:104 books/models.py:123
 msgid "Authors"
 msgstr "Autores"
 
-#: books/models.py:83
+#: books/models.py:102
 msgid "Physical ID"
 msgstr "Tombo"
 
-#: books/models.py:84 books/templates/index.html:8
+#: books/models.py:103 books/templates/index.html:8
 msgid "Title"
 msgstr "Título"
 
-#: books/models.py:90 books/templates/index.html:9
+#: books/models.py:108 books/templates/index.html:9
 msgid "Volume"
 msgstr "Volume"
 
-#: books/models.py:91 books/templates/index.html:10
+#: books/models.py:109 books/templates/index.html:10
 msgid "Edition"
 msgstr "Edição"
 
-#: books/models.py:92
+#: books/models.py:110
 msgid "Local"
 msgstr "Local"
 
-#: books/models.py:94
+#: books/models.py:112
 msgid "Year"
 msgstr "Ano"
 
-#: books/models.py:95
+#: books/models.py:113
 msgid "Page count"
 msgstr "Número de páginas"
 
-#: books/models.py:96 books/templates/index.html:11
+#: books/models.py:114 books/templates/index.html:11
 msgid "ISBN"
 msgstr "ISBN"
 
-#: books/models.py:99
+#: books/models.py:117
 msgid "Observations"
 msgstr "Observações"
 
-#: books/models.py:102
+#: books/models.py:120
 msgid "Book"
 msgstr "Livro"
 
-#: books/models.py:103
+#: books/models.py:121
 msgid "Books"
 msgstr "Livros"
 

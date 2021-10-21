@@ -11,7 +11,7 @@ class PublisherAdmin(DefaultModelAdmin):
 
 class ShelfAdmin(DefaultModelAdmin):
     search_fields = ('cdd', 'description',)
-    ordering = ['cdd']
+    ordering = ('cdd',)
 
 
 class SubjectAdmin(DefaultModelAdmin):
@@ -28,6 +28,7 @@ class CollectionAdmin(DefaultModelAdmin):
 
 class AuthorAdmin(DefaultModelAdmin):
     search_fields = ('name',)
+    ordering = ('name',)
 
 
 class BookAdmin(DefaultModelAdmin):

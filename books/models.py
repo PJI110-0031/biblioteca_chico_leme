@@ -27,6 +27,14 @@ class Shelf(models.Model):
     def __str__(self):
         return f"{_('Shelf')} {self.cdd + ' - ' if self.cdd else ''} {self.description}"
 
+    @staticmethod
+    def equals(other):
+        query = Q()
+        query.add(Q(cdd=other.cdd), Q.AND)
+        query.add(Q(description=other.description), Q.AND)
+
+        return query
+
 
 class Subject(models.Model):
     cdd = models.PositiveIntegerField(primary_key=True, validators=[MaxValueValidator(999)], verbose_name=_('CDD'))
@@ -65,8 +73,8 @@ class Collection(models.Model):
 
 class Author(models.Model):
     name = models.CharField(max_length=256, verbose_name=_('Name'))
-    year_of_birth = models.PositiveIntegerField(blank=True, null=True, verbose_name=_('Year of birth'))
-    year_of_death = models.PositiveIntegerField(blank=True, null=True, verbose_name=_('Year of death'))
+    year_of_birth = models.CharField(max_length=10, blank=True, null=True, verbose_name=_('Year of birth'))
+    year_of_death = models.CharField(max_length=10, blank=True, null=True, verbose_name=_('Year of death'))
     pha = models.PositiveIntegerField(blank=True, null=True, verbose_name=_('PHA'))
     pha_label = models.CharField(max_length=10, blank=True, null=True, verbose_name=_('PHA Label'))
     observation = models.TextField(blank=True, null=True, verbose_name=_('Observation'))
@@ -77,6 +85,17 @@ class Author(models.Model):
 
     def __str__(self):
         return self.name
+
+    @staticmethod
+    def equals(other):
+        query = Q()
+        query.add(Q(name=other.name), Q.AND)
+        query.add(Q(year_of_birth=other.year_of_birth), Q.AND)
+        query.add(Q(year_of_death=other.year_of_death), Q.AND)
+        query.add(Q(pha=other.pha), Q.AND)
+        query.add(Q(pha_label=other.pha_label), Q.AND)
+        query.add(Q(observation=other.observation), Q.AND)
+        return query
 
 
 class Book(models.Model):

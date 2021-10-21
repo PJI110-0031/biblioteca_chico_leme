@@ -12,31 +12,47 @@ class Command(BaseCommand):
     help = 'Populate database with default values'
 
     def _populate_shelves(self):
-
-        raw_shelves = []
-
         with open(Path(settings.BASE_DIR, 'books/management/commands/csv/shelves.csv'), mode='r') as csv_file:
             csv_reader = csv.DictReader(csv_file)
 
             for row in csv_reader:
-                raw_shelves.append(row['Nova Sequência 2016'])
+                split_data = re.compile(r'[_\-–]').split(row['Nova Sequência 2016'], maxsplit=1)
 
-        for raw_shelf in raw_shelves:
-            split_data = re.compile(r'[_\-–]').split(raw_shelf, maxsplit=1)
-            print(split_data)
+                if len(split_data) == 2:
+                    cdd = split_data[0]
+                    description = split_data[1] if split_data[1] else None
+                else:
+                    cdd = None
+                    description = split_data[0] if split_data[0] else None
 
-            if len(split_data) == 2:
-                cdd = split_data[0]
-                description = split_data[1]
-            else:
-                cdd = None
-                description = split_data[0]
+                shelf = Shelf(cdd=cdd, description=description)
 
-            if not Shelf.objects.filter(cdd=cdd).filter(description=description).exists():
-                Shelf(cdd=cdd, description=description).save()
+                if not Shelf.objects.filter(Shelf.equals(shelf)).exists():
+                    shelf.save()
 
     def _populate_authors(self):
-        pass
+        with open(Path(settings.BASE_DIR, 'books/management/commands/csv/authors.csv'), mode='r') as csv_file:
+            csv_reader = csv.DictReader(csv_file)
+
+            for row in csv_reader:
+                name = row['AUTOR'] if row['AUTOR'] else None
+                birth_death = row['Nascimento / Morte'].split('-', maxsplit=1)
+                birth = birth_death[0] if len(birth_death) > 0 and birth_death[0] else None
+                death = birth_death[1] if len(birth_death) > 1 and birth_death[1] else None
+                pha = row['PHA (tabela)'] if row['PHA (tabela)'] else None
+                pha_label = row['PHA / ETIQUETA/  CORRETA'] if row['PHA / ETIQUETA/  CORRETA'] else None
+                observation = row['Observação'] if row['Observação'] else None
+
+                author = Author(name=name,
+                                year_of_birth=birth,
+                                year_of_death=death,
+                                pha=pha,
+                                pha_label=pha_label,
+                                observation=observation,
+                                )
+
+                if not Author.objects.filter(Author.equals(author)).exists():
+                    author.save()
 
     def _populate_books(self):
         pass

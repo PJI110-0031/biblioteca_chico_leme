@@ -17,7 +17,7 @@ class Publisher(models.Model):
 
 
 class Shelf(models.Model):
-    cdd = models.CharField(primary_key=True, max_length=10, verbose_name=_('CDD'))
+    cdd = models.CharField(blank=True, null=True, max_length=10, verbose_name=_('CDD'))
     description = models.CharField(max_length=256, verbose_name=_('Description'))
 
     class Meta:
@@ -25,7 +25,7 @@ class Shelf(models.Model):
         verbose_name_plural = _('Shelves')
 
     def __str__(self):
-        return f"{_('Shelf')} {self.cdd} - {self.description}"
+        return f"{_('Shelf')} {self.cdd + ' - ' if self.cdd else ''} {self.description}"
 
 
 class Subject(models.Model):

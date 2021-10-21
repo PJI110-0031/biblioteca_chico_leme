@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-20 20:03-0300\n"
+"POT-Creation-Date: 2021-10-21 00:52-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,134 +22,134 @@ msgstr ""
 msgid "Library"
 msgstr "Biblioteca"
 
-#: books/models.py:8 books/models.py:43 books/models.py:54 books/models.py:66
+#: books/models.py:9 books/models.py:44 books/models.py:55 books/models.py:67
 msgid "Name"
 msgstr "Nome"
 
-#: books/models.py:11 books/models.py:91 books/templates/index.html:13
+#: books/models.py:12 books/models.py:93 books/templates/index.html:13
 msgid "Publisher"
 msgstr "Editora"
 
-#: books/models.py:12
+#: books/models.py:13
 msgid "Publishers"
 msgstr "Editoras"
 
-#: books/models.py:19 books/models.py:31
+#: books/models.py:20 books/models.py:32
 msgid "CDD"
 msgstr "CDD"
 
-#: books/models.py:20 books/models.py:32
+#: books/models.py:21 books/models.py:33
 msgid "Description"
 msgstr "Descrição"
 
-#: books/models.py:23 books/models.py:96
+#: books/models.py:24 books/models.py:98
 msgid "Shelf"
 msgstr "Prateleira"
 
-#: books/models.py:24
+#: books/models.py:25
 msgid "Shelves"
 msgstr "Prateleiras"
 
-#: books/models.py:35
+#: books/models.py:36
 msgid "Subject"
 msgstr "Assunto"
 
-#: books/models.py:36 books/models.py:87 books/models.py:107
+#: books/models.py:37 books/models.py:89 books/models.py:109
 msgid "Subjects"
 msgstr "Assuntos"
 
-#: books/models.py:46
+#: books/models.py:47
 msgid "Translator"
 msgstr "Tradutor"
 
-#: books/models.py:47 books/models.py:85
+#: books/models.py:48 books/models.py:86
 msgid "Translators"
 msgstr "Tradutores"
 
-#: books/models.py:58 books/models.py:86 books/templates/index.html:14
+#: books/models.py:59 books/models.py:88 books/templates/index.html:14
 msgid "Collection"
 msgstr "Coleção"
 
-#: books/models.py:59
+#: books/models.py:60
 msgid "Collections"
 msgstr "Coleções"
 
-#: books/models.py:67
+#: books/models.py:68
 msgid "Year of birth"
 msgstr "Ano de nascimento"
 
-#: books/models.py:68
+#: books/models.py:69
 msgid "Year of death"
 msgstr "Ano de morte"
 
-#: books/models.py:69 books/models.py:95
+#: books/models.py:70 books/models.py:97
 msgid "PHA"
 msgstr "PHA"
 
-#: books/models.py:70
+#: books/models.py:71
 msgid "PHA Label"
 msgstr "PHA Etiqueta"
 
-#: books/models.py:71
+#: books/models.py:72
 #, fuzzy
 #| msgid "Observations"
 msgid "Observation"
 msgstr "Observações"
 
-#: books/models.py:74 books/templates/index.html:12
+#: books/models.py:75 books/templates/index.html:12
 msgid "Author"
 msgstr "Autor"
 
-#: books/models.py:75 books/models.py:84 books/models.py:103
+#: books/models.py:76 books/models.py:85 books/models.py:105
 msgid "Authors"
 msgstr "Autores"
 
-#: books/models.py:82
+#: books/models.py:83
 msgid "Physical ID"
 msgstr "Tombo"
 
-#: books/models.py:83 books/templates/index.html:8
+#: books/models.py:84 books/templates/index.html:8
 msgid "Title"
 msgstr "Título"
 
-#: books/models.py:88 books/templates/index.html:9
+#: books/models.py:90 books/templates/index.html:9
 msgid "Volume"
 msgstr "Volume"
 
-#: books/models.py:89 books/templates/index.html:10
+#: books/models.py:91 books/templates/index.html:10
 msgid "Edition"
 msgstr "Edição"
 
-#: books/models.py:90
+#: books/models.py:92
 msgid "Local"
 msgstr "Local"
 
-#: books/models.py:92
+#: books/models.py:94
 msgid "Year"
 msgstr "Ano"
 
-#: books/models.py:93
+#: books/models.py:95
 msgid "Page count"
 msgstr "Número de páginas"
 
-#: books/models.py:94 books/templates/index.html:11
+#: books/models.py:96 books/templates/index.html:11
 msgid "ISBN"
 msgstr "ISBN"
 
-#: books/models.py:97
+#: books/models.py:99
 msgid "Observations"
 msgstr "Observações"
 
-#: books/models.py:100
+#: books/models.py:102
 msgid "Book"
 msgstr "Livro"
 
-#: books/models.py:101
+#: books/models.py:103
 msgid "Books"
 msgstr "Livros"
 
 #: books/templates/admin/base_site.html:4
-#: books/templates/admin/base_site.html:9 books/templates/base.html:10
+#: books/templates/admin/base_site.html:9 books/templates/base.html:9
 msgid "Page title"
 msgstr "Biblioteca Chico Leme"
 

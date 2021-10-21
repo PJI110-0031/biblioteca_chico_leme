@@ -11,6 +11,7 @@ class PublisherAdmin(DefaultModelAdmin):
 
 class ShelfAdmin(DefaultModelAdmin):
     search_fields = ('cdd', 'description',)
+    ordering = ['cdd']
 
 
 class SubjectAdmin(DefaultModelAdmin):

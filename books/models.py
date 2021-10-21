@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.core.validators import MaxValueValidator
 from django.db import models
+from django.db.models import Q
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -110,3 +111,15 @@ class Book(models.Model):
 
     def __str__(self):
         return self.title
+
+    @staticmethod
+    def search_query(search_text):
+        query = Q()
+        query.add(Q(isbn__icontains=search_text), Q.OR)
+        query.add(Q(title__icontains=search_text), Q.OR)
+        query.add(Q(authors__name__icontains=search_text), Q.OR)
+        query.add(Q(authors__observation__icontains=search_text), Q.OR)
+        query.add(Q(collection__name__icontains=search_text), Q.OR)
+        query.add(Q(subjects__description__icontains=search_text), Q.OR)
+
+        return query

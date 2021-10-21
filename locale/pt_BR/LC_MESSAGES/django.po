@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-20 20:01-0300\n"
+"POT-Creation-Date: 2021-10-20 20:03-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -156,6 +156,14 @@ msgstr "Biblioteca Chico Leme"
 #: books/templates/index.html:54
 msgid "No book found"
 msgstr "Nenhum livro encontrado"
+
+#: books/templates/partials/_search.html:5
+msgid "Search placeholder"
+msgstr "Pesquise por ISBN, título, autor ou assunto"
+
+#: books/templates/partials/_search.html:7
+msgid "Search"
+msgstr "Pesquisar"
 
 #: venv/lib/python3.9/site-packages/django/contrib/messages/apps.py:7
 msgid "Messages"

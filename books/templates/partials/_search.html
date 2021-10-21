@@ -1,0 +1,8 @@
+{% load i18n %}
+
+<form action="{% url 'index' %}">
+    <label>
+        <input type="search" name="search" placeholder="{% translate 'Search placeholder' %}" value="{{ search_text }}">
+    </label>
+    <button type="submit">{% translate 'Search' %}</button>
+</form>

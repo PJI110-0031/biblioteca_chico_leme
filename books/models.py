@@ -20,7 +20,7 @@ class Publisher(models.Model):
 
 
 class Shelf(models.Model):
-    cdd = models.CharField(blank=True, null=True, max_length=10, verbose_name=_('CDD'))
+    ddc = models.CharField(blank=True, null=True, max_length=10, verbose_name=_('DDC'))
     description = models.CharField(max_length=256, verbose_name=_('Description'))
 
     class Meta:
@@ -28,15 +28,15 @@ class Shelf(models.Model):
         verbose_name_plural = _('Shelves')
 
     def __str__(self):
-        return f"{_('Shelf')} {self.cdd + ' - ' if self.cdd else ''} {self.description}"
+        return f"{_('Shelf')} {self.ddc + ' - ' if self.ddc else ''} {self.description}"
 
     @staticmethod
     def find_equals(other) -> QuerySet:
-        return Shelf.objects.filter(cdd=other.cdd, description=other.description)
+        return Shelf.objects.filter(ddc=other.ddc, description=other.description)
 
 
 class Subject(models.Model):
-    cdd = models.CharField(max_length=10, primary_key=True, verbose_name=_('CDD'))
+    ddc = models.CharField(max_length=10, primary_key=True, verbose_name=_('DDC'))
     description = models.CharField(max_length=256, verbose_name=_('Description'))
 
     class Meta:
@@ -44,11 +44,11 @@ class Subject(models.Model):
         verbose_name_plural = _('Subjects')
 
     def __str__(self):
-        return f'{self.cdd} {self.description}'
+        return f'{self.ddc} {self.description}'
 
     @staticmethod
     def find_equals(other) -> QuerySet:
-        return Subject.objects.filter(cdd=other.cdd, description=other.description)
+        return Subject.objects.filter(ddc=other.ddc, description=other.description)
 
 
 class Translator(models.Model):

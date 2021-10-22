@@ -55,7 +55,7 @@ class Migration(migrations.Migration):
             name='Shelf',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('cdd', models.CharField(blank=True, max_length=10, null=True, verbose_name='CDD')),
+                ('ddc', models.CharField(blank=True, max_length=10, null=True, verbose_name='DDC')),
                 ('description', models.CharField(max_length=256, verbose_name='Description')),
             ],
             options={
@@ -66,7 +66,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Subject',
             fields=[
-                ('cdd', models.PositiveIntegerField(primary_key=True, serialize=False, validators=[django.core.validators.MaxValueValidator(999)], verbose_name='CDD')),
+                ('ddc', models.PositiveIntegerField(primary_key=True, serialize=False, validators=[django.core.validators.MaxValueValidator(999)], verbose_name='DDC')),
                 ('description', models.CharField(max_length=256, verbose_name='Description')),
             ],
             options={

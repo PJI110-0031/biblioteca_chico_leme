@@ -33,7 +33,7 @@ class Migration(migrations.Migration):
         ),
         migrations.AlterField(
             model_name='subject',
-            name='cdd',
-            field=models.CharField(max_length=10, primary_key=True, serialize=False, verbose_name='CDD'),
+            name='ddc',
+            field=models.CharField(max_length=10, primary_key=True, serialize=False, verbose_name='DDC'),
         ),
     ]

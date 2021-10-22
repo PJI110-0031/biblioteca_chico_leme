@@ -16,12 +16,12 @@ def _normalize_data(data: str) -> str:
 def _extract_shelf_data(shelf_data):
     split_data = re.split(r'[_\-–]', shelf_data, maxsplit=1)
     if len(split_data) == 2:
-        cdd = _normalize_data(split_data[0])
+        ddc = _normalize_data(split_data[0])
         description = _normalize_data(split_data[1])
     else:
-        cdd = None
+        ddc = None
         description = _normalize_data(split_data[0])
-    shelf = Shelf(cdd=cdd, description=description)
+    shelf = Shelf(ddc=ddc, description=description)
     return shelf
 
 
@@ -142,13 +142,13 @@ def _populate_and_get_translators(row) -> list[Translator]:
 
 
 def _populate_and_get_subjects(shelf: Shelf) -> list[Subject]:
-    if not shelf or not shelf.cdd or not shelf.cdd[:3].isnumeric():
+    if not shelf or not shelf.ddc or not shelf.ddc[:3].isnumeric():
         return []
 
-    cdd = shelf.cdd[:3]
-    cdd = '0' * (3 - len(cdd)) + cdd
+    ddc = shelf.ddc[:3]
+    ddc = '0' * (3 - len(ddc)) + ddc
 
-    return Subject.objects.filter(cdd__in=[cdd, cdd[:2] + '0', cdd[:1] + '00']).all()
+    return Subject.objects.filter(ddc__in=[ddc, ddc[:2] + '0', ddc[:1] + '00']).all()
 
 
 class Command(BaseCommand):
@@ -212,11 +212,11 @@ class Command(BaseCommand):
             for row in csv_reader:
                 debug(f'Processing subject data {row}')
 
-                cdd = _normalize_data(row['ddc'])
+                ddc = _normalize_data(row['ddc'])
                 description = _normalize_data(row['description'])
 
                 subject = Subject(
-                    cdd=cdd,
+                    ddc=ddc,
                     description=description,
                 )
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-21 23:28-0300\n"
+"POT-Creation-Date: 2021-10-22 00:43-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,7 +26,8 @@ msgstr "Biblioteca"
 msgid "Name"
 msgstr "Nome"
 
-#: books/models.py:11 books/models.py:126 books/templates/index.html:13
+#: books/models.py:11 books/models.py:126
+#: books/templates/partials/_search_result.html:10
 msgid "Publisher"
 msgstr "Editora"
 
@@ -35,7 +36,7 @@ msgid "Publishers"
 msgstr "Editoras"
 
 #: books/models.py:23 books/models.py:39
-msgid "CDD"
+msgid "DDC"
 msgstr "CDD"
 
 #: books/models.py:24 books/models.py:40
@@ -66,7 +67,8 @@ msgstr "Tradutor"
 msgid "Translators"
 msgstr "Tradutores"
 
-#: books/models.py:74 books/models.py:121 books/templates/index.html:14
+#: books/models.py:74 books/models.py:121
+#: books/templates/partials/_search_result.html:11
 msgid "Collection"
 msgstr "Coleção"
 
@@ -96,7 +98,7 @@ msgstr "PHA Etiqueta"
 msgid "Observation"
 msgstr "Observações"
 
-#: books/models.py:94 books/templates/index.html:12
+#: books/models.py:94 books/templates/partials/_search_result.html:9
 msgid "Author"
 msgstr "Autor"
 
@@ -108,15 +110,15 @@ msgstr "Autores"
 msgid "Physical ID"
 msgstr "Tombo"
 
-#: books/models.py:118 books/templates/index.html:8
+#: books/models.py:118 books/templates/partials/_search_result.html:5
 msgid "Title"
 msgstr "Título"
 
-#: books/models.py:123 books/templates/index.html:9
+#: books/models.py:123 books/templates/partials/_search_result.html:6
 msgid "Volume"
 msgstr "Volume"
 
-#: books/models.py:124 books/templates/index.html:10
+#: books/models.py:124 books/templates/partials/_search_result.html:7
 msgid "Edition"
 msgstr "Edição"
 
@@ -132,7 +134,7 @@ msgstr "Ano"
 msgid "Page count"
 msgstr "Número de páginas"
 
-#: books/models.py:129 books/templates/index.html:11
+#: books/models.py:129 books/templates/partials/_search_result.html:8
 msgid "ISBN"
 msgstr "ISBN"
 
@@ -150,10 +152,11 @@ msgstr "Livros"
 
 #: books/templates/admin/base_site.html:4
 #: books/templates/admin/base_site.html:9 books/templates/base.html:9
+#: books/templates/partials/_header.html:5
 msgid "Page title"
 msgstr "Biblioteca Chico Leme"
 
-#: books/templates/index.html:54
+#: books/templates/index.html:8
 msgid "No book found"
 msgstr "Nenhum livro encontrado"
 

@@ -11,13 +11,13 @@ class PublisherAdmin(DefaultModelAdmin):
 
 
 class ShelfAdmin(DefaultModelAdmin):
-    search_fields = ('cdd', 'description',)
-    ordering = ('cdd',)
+    search_fields = ('ddc', 'description',)
+    ordering = ('ddc',)
 
 
 class SubjectAdmin(DefaultModelAdmin):
-    search_fields = ('cdd', 'description',)
-    ordering = ('cdd',)
+    search_fields = ('ddc', 'description',)
+    ordering = ('ddc',)
 
 
 class TranslatorAdmin(DefaultModelAdmin):
@@ -56,7 +56,7 @@ class BookAdmin(DefaultModelAdmin):
         'pha',
         'observations',
         'authors__name',
-        'subjects__cdd',
+        'subjects__ddc',
         'subjects__description',
         'publisher__name',
         'collection__name',

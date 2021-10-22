@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import logging
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -23,6 +24,7 @@ SECRET_KEY = 'django-insecure-y%dz2%lcw6tvm05#&m)_se97x=k@xk%+#!5nq51^#)6!#^u!tz
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+logging.getLogger().setLevel(logging.DEBUG if DEBUG else logging.INFO)
 
 ALLOWED_HOSTS = []
 

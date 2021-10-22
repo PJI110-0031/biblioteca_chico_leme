@@ -1,7 +1,6 @@
 from django.contrib import admin
-from django.core.validators import MaxValueValidator
 from django.db import models
-from django.db.models import Q
+from django.db.models import Q, QuerySet
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -14,6 +13,10 @@ class Publisher(models.Model):
 
     def __str__(self):
         return self.name
+
+    @staticmethod
+    def find_by_name_exact(publisher_name) -> QuerySet:
+        return Publisher.objects.filter(name__iexact=publisher_name)
 
 
 class Shelf(models.Model):
@@ -28,16 +31,12 @@ class Shelf(models.Model):
         return f"{_('Shelf')} {self.cdd + ' - ' if self.cdd else ''} {self.description}"
 
     @staticmethod
-    def equals(other):
-        query = Q()
-        query.add(Q(cdd=other.cdd), Q.AND)
-        query.add(Q(description=other.description), Q.AND)
-
-        return query
+    def find_equals(other) -> QuerySet:
+        return Shelf.objects.filter(cdd=other.cdd, description=other.description)
 
 
 class Subject(models.Model):
-    cdd = models.PositiveIntegerField(primary_key=True, validators=[MaxValueValidator(999)], verbose_name=_('CDD'))
+    cdd = models.CharField(max_length=10, primary_key=True, verbose_name=_('CDD'))
     description = models.CharField(max_length=256, verbose_name=_('Description'))
 
     class Meta:
@@ -45,7 +44,11 @@ class Subject(models.Model):
         verbose_name_plural = _('Subjects')
 
     def __str__(self):
-        return self.description
+        return f'{self.cdd} {self.description}'
+
+    @staticmethod
+    def find_equals(other) -> QuerySet:
+        return Subject.objects.filter(cdd=other.cdd, description=other.description)
 
 
 class Translator(models.Model):
@@ -58,6 +61,10 @@ class Translator(models.Model):
     def __str__(self):
         return self.name
 
+    @staticmethod
+    def find_by_name_exact(translator_name) -> QuerySet:
+        return Translator.objects.filter(Q(name__iexact=translator_name))
+
 
 class Collection(models.Model):
     name = models.CharField(max_length=256, verbose_name=_('Name'))
@@ -69,6 +76,10 @@ class Collection(models.Model):
 
     def __str__(self):
         return self.name
+
+    @staticmethod
+    def find_by_name_exact(collection_name) -> QuerySet:
+        return Collection.objects.filter(name__iexact=collection_name)
 
 
 class Author(models.Model):
@@ -87,15 +98,19 @@ class Author(models.Model):
         return self.name
 
     @staticmethod
-    def equals(other):
-        query = Q()
-        query.add(Q(name=other.name), Q.AND)
-        query.add(Q(year_of_birth=other.year_of_birth), Q.AND)
-        query.add(Q(year_of_death=other.year_of_death), Q.AND)
-        query.add(Q(pha=other.pha), Q.AND)
-        query.add(Q(pha_label=other.pha_label), Q.AND)
-        query.add(Q(observation=other.observation), Q.AND)
-        return query
+    def find_equals(other) -> QuerySet:
+        return Author.objects.filter(
+            Q(name=other.name),
+            Q(year_of_birth=other.year_of_birth),
+            Q(year_of_death=other.year_of_death),
+            Q(pha=other.pha),
+            Q(pha_label=other.pha_label),
+            Q(observation=other.observation),
+        )
+
+    @staticmethod
+    def find_by_name_exact(author_name) -> QuerySet:
+        return Author.objects.filter(Q(name__iexact=author_name))
 
 
 class Book(models.Model):
@@ -105,15 +120,15 @@ class Book(models.Model):
     translators = models.ManyToManyField(Translator, blank=True, verbose_name=_('Translators'))
     collection = models.ForeignKey(Collection, on_delete=models.PROTECT, blank=True, null=True, verbose_name=_('Collection'))
     subjects = models.ManyToManyField(Subject, verbose_name=_('Subjects'))
-    volume = models.PositiveIntegerField(blank=True, null=True, verbose_name=_('Volume'))
+    volume = models.CharField(max_length=10, blank=True, null=True, verbose_name=_('Volume'))
     edition = models.PositiveIntegerField(blank=True, null=True, verbose_name=_('Edition'))
     local = models.CharField(max_length=100, blank=True, null=True, verbose_name=_('Local'))
-    publisher = models.ForeignKey(Publisher, on_delete=models.PROTECT, verbose_name=_('Publisher'))
+    publisher = models.ForeignKey(Publisher, on_delete=models.PROTECT, blank=True, null=True, verbose_name=_('Publisher'))
     year = models.IntegerField(blank=True, null=True, verbose_name=_('Year'))
-    page_count = models.PositiveIntegerField(blank=True, null=True, verbose_name=_('Page count'))
+    page_count = models.CharField(max_length=12, blank=True, null=True, verbose_name=_('Page count'))
     isbn = models.CharField(max_length=13, blank=True, null=True, verbose_name=_('ISBN'))
     pha = models.CharField(max_length=20, blank=True, null=True, verbose_name=_('PHA'))
-    shelf = models.ForeignKey(Shelf, on_delete=models.PROTECT, verbose_name=_('Shelf'))
+    shelf = models.ForeignKey(Shelf, on_delete=models.PROTECT, blank=True, null=True, verbose_name=_('Shelf'))
     observations = models.TextField(max_length=2048, blank=True, null=True, verbose_name=_('Observations'))
 
     class Meta:
@@ -122,11 +137,11 @@ class Book(models.Model):
 
     @admin.display(description=_('Authors'))
     def authors_str(self):
-        return ', '.join(str(author) for author in self.authors.all())
+        return [str(author) for author in self.authors.all()]
 
     @admin.display(description=_('Subjects'))
     def subjects_str(self):
-        return ', '.join(str(subject) for subject in self.subjects.all())
+        return [str(subject) for subject in self.subjects.all()]
 
     def __str__(self):
         return self.title
@@ -142,3 +157,31 @@ class Book(models.Model):
         query.add(Q(subjects__description__icontains=search_text), Q.OR)
 
         return query
+
+    @staticmethod
+    def find_equals(other, authors, translators, subjects) -> QuerySet:
+        query = Q()
+        query.add(Q(physical_id=other.physical_id), Q.AND)
+        query.add(Q(title=other.title), Q.AND)
+        query.add(Q(collection=other.collection), Q.AND)
+        query.add(Q(volume=other.volume), Q.AND)
+        query.add(Q(edition=other.edition), Q.AND)
+        query.add(Q(local=other.local), Q.AND)
+        query.add(Q(publisher=other.publisher), Q.AND)
+        query.add(Q(year=other.year), Q.AND)
+        query.add(Q(page_count=other.page_count), Q.AND)
+        query.add(Q(isbn=other.isbn), Q.AND)
+        query.add(Q(pha=other.pha), Q.AND)
+        query.add(Q(shelf=other.shelf), Q.AND)
+        query.add(Q(observations=other.observations), Q.AND)
+
+        if authors:
+            query.add(Q(authors__name__in=[author.name for author in authors]), Q.AND)
+
+        if translators:
+            query.add(Q(translators__name__in=[translator.name for translator in translators]), Q.AND)
+
+        if subjects:
+            query.add(Q(subjects__description__in=[subject.description for subject in subjects]), Q.AND)
+
+        return Book.objects.filter(query)

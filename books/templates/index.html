@@ -2,54 +2,8 @@
 {% load i18n %}
 {% block content %}
     {% if books %}
-        <table>
-            <thead>
-            <tr>
-                <td>{% translate 'Title' %}</td>
-                <td>{% translate 'Volume' %}</td>
-                <td>{% translate 'Edition' %}</td>
-                <td>{% translate 'ISBN' %}</td>
-                <td>{% translate 'Author' %}</td>
-                <td>{% translate 'Publisher' %}</td>
-                <td>{% translate 'Collection' %}</td>
-            </tr>
-
-            </thead>
-            <tbody>
-            {% for book in books %}
-                <tr>
-                    <td>{{ book.title }}</td>
-                    <td>
-                        {% if book.volume %}
-                            {{ book.volume }}
-                        {% endif %}
-                    </td>
-                    <td>
-                        {% if book.edition %}
-                            {{ book.edition }} ª
-                        {% endif %}
-                    </td>
-                    <td>
-                        {% if book.isbn %}
-                            {{ book.isbn }}
-                        {% endif %}
-                    </td>
-                    <td>
-                        {% if book.authors %}
-                            {{ book.authors_str }}
-                        {% endif %}
-                    </td>
-                    <td>{{ book.publisher }}</td>
-                    <td>
-                        {% if book.collection %}
-                            {{ book.collection }}
-                        {% endif %}
-                    </td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    {% else %}
+        {% include 'partials/_search_result.html' %}
+    {% elif search_text %}
         <div>
             <p>{% translate 'No book found' %}</p>
         </div>

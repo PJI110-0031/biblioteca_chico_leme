@@ -1,4 +1,7 @@
+{% load i18n %}
+
 <header>
-    <a href="{% url 'admin:index' %}">ADMIN</a>
+    <p><a href="{% url 'admin:index' %}">ADMIN</a></p>
+    <h1>{% translate "Page title" %}</h1>
     {% include 'partials/_search.html' %}
 </header>

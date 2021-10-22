@@ -1,0 +1,20 @@
+{% load i18n %}
+<table>
+    <thead>
+    <tr>
+        <td>{% translate 'Title' %}</td>
+        <td>{% translate 'Volume' %}</td>
+        <td>{% translate 'Edition' %}</td>
+        <td>{% translate 'ISBN' %}</td>
+        <td>{% translate 'Author' %}</td>
+        <td>{% translate 'Publisher' %}</td>
+        <td>{% translate 'Collection' %}</td>
+    </tr>
+
+    </thead>
+    <tbody>
+    {% for book in books %}
+        {% include 'partials/_search.result_item.html' %}
+    {% endfor %}
+    </tbody>
+</table>

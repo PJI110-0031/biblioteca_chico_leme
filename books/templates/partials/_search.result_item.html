@@ -1,0 +1,31 @@
+<tr>
+    <td>{{ book.title }}</td>
+    <td>
+        {% if book.volume %}
+            {{ book.volume }}
+        {% endif %}
+    </td>
+    <td>
+        {% if book.edition %}
+            {{ book.edition }} ª
+        {% endif %}
+    </td>
+    <td>
+        {% if book.isbn %}
+            {{ book.isbn }}
+        {% endif %}
+    </td>
+    <td>
+        {% if book.authors %}
+            {% for author in book.authors_str %}
+                {{ author }}<br>
+            {% endfor %}
+        {% endif %}
+    </td>
+    <td>{{ book.publisher }}</td>
+    <td>
+        {% if book.collection %}
+            {{ book.collection }}
+        {% endif %}
+    </td>
+</tr>

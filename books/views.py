@@ -11,4 +11,4 @@ def index(request):
 
         return render(request, 'index.html', {'books': result, 'search_text': search_text})
 
-    return render(request, 'index.html', {'books': Book.objects.all()})
+    return render(request, 'index.html', {'books': []})

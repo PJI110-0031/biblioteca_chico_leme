@@ -61,6 +61,7 @@ class BookAdmin(DefaultModelAdmin):
         'publisher__name',
         'collection__name',
     )
+    filter_horizontal = ('authors', 'translators', 'subjects',)
 
 
 admin.site.register(Publisher, PublisherAdmin)

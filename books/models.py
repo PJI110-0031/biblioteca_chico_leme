@@ -4,6 +4,10 @@ from django.db.models import Q, QuerySet
 from django.utils.translation import ugettext_lazy as _
 
 
+def _bound_text(text, limit=100):
+    return text if len(text) < limit else text[:limit] + '...'
+
+
 class Publisher(models.Model):
     name = models.CharField(max_length=256, verbose_name=_('Name'))
 
@@ -12,7 +16,7 @@ class Publisher(models.Model):
         verbose_name_plural = _('Publishers')
 
     def __str__(self):
-        return self.name
+        return _bound_text(self.name)
 
     @staticmethod
     def find_by_name_exact(publisher_name) -> QuerySet:
@@ -28,7 +32,7 @@ class Shelf(models.Model):
         verbose_name_plural = _('Shelves')
 
     def __str__(self):
-        return f"{_('Shelf')} {self.ddc + ' - ' if self.ddc else ''} {self.description}"
+        return _bound_text(f"{_('Shelf')} {self.ddc + ' - ' if self.ddc else ''} {self.description}")
 
     @staticmethod
     def find_equals(other) -> QuerySet:

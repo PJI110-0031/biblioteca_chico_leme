@@ -2,6 +2,10 @@
 
 <header>
     <p><a href="{% url 'admin:index' %}">ADMIN</a></p>
-    <h1>{% translate "Page title" %}</h1>
+    <h1 class="text-center separator">
+        <a href="{% url 'index' %}" class="clear_decoration">
+            {% translate "Page title" %}
+        </a>
+    </h1>
     {% include 'partials/_search.html' %}
 </header>

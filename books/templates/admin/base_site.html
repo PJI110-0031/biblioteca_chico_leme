@@ -3,6 +3,9 @@
 {% block title %}
     {{ _('Page title') }}
 {% endblock %}
+{% block extrahead %}
+    {% include 'partials/_favicon.html' %}
+{% endblock %}
 
 {% block branding %}
     <h1>

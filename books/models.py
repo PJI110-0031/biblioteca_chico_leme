@@ -141,11 +141,25 @@ class Book(models.Model):
 
     @admin.display(description=_('Authors'))
     def authors_str(self):
-        return [str(author) for author in self.authors.all()]
+        return ' | '.join([str(author) for author in self.authors.all()])
 
     @admin.display(description=_('Subjects'))
     def subjects_str(self):
-        return [str(subject) for subject in self.subjects.all()]
+        return ' | '.join(str(subject) for subject in self.subjects.all())
+
+    def infos(self):
+        infos = []
+
+        if self.isbn:
+            infos.append(f"{_('ISBN')}: {self.isbn}")
+
+        if self.collection:
+            infos.append(f"{_('Collection')}: {self.collection}")
+
+        if self.subjects:
+            infos.append(f"{_('Subjects')}: {self.subjects_str()}")
+
+        return infos
 
     def __str__(self):
         return self.title

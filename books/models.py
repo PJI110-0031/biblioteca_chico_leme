@@ -165,16 +165,15 @@ class Book(models.Model):
         return self.title
 
     @staticmethod
-    def search_query(search_text):
-        query = Q()
-        query.add(Q(isbn__icontains=search_text), Q.OR)
-        query.add(Q(title__icontains=search_text), Q.OR)
-        query.add(Q(authors__name__icontains=search_text), Q.OR)
-        query.add(Q(authors__observation__icontains=search_text), Q.OR)
-        query.add(Q(collection__name__icontains=search_text), Q.OR)
-        query.add(Q(subjects__description__icontains=search_text), Q.OR)
-
-        return query
+    def search_by_text(search_text) -> QuerySet:
+        return Book.objects.filter(
+            Q(isbn__iexact=search_text) |
+            Q(title__icontains=search_text) |
+            Q(authors__name__icontains=search_text) |
+            Q(authors__observation__icontains=search_text) |
+            Q(collection__name__icontains=search_text) |
+            Q(subjects__description__icontains=search_text)
+        ).distinct()
 
     @staticmethod
     def find_equals(other, authors, translators, subjects) -> QuerySet:

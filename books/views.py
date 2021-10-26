@@ -11,7 +11,7 @@ def index(request):
         if len(search_text) < 3:
             raise BadRequest("Search query must have at least 3 characters")
 
-        result = Book.objects.filter(Book.search_query(search_text)).distinct()
+        result = Book.search_by_text(search_text)
 
         return render(request, 'index.html', {'books': result, 'search_text': search_text})
 

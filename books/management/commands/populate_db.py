@@ -158,7 +158,7 @@ class Command(BaseCommand):
     def _open_csv(self, csv_path: str):
         debug(f'Opening csv file {csv_path}')
 
-        return open(Path(self.base_dir, csv_path), mode='r')
+        return open(Path(self.base_dir, csv_path), mode='r', encoding='utf-8')
 
     def _populate_shelves(self):
         info('Populating shelves...')

@@ -1,12 +1,10 @@
 .search-bar {
     max-width: 650px;
     width: 100%;
-    margin: 0 auto;
-
     display: flex;
     flex-direction: row;
 
-    margin-bottom: 1.5rem;
+    margin: 0 auto 1.5rem;
 
     border: 1px solid #dadada;
     border-radius: 8px;

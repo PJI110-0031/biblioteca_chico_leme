@@ -9,10 +9,22 @@
     text-align: center;
 }
 
+.text-end {
+    text-align: end;
+}
+
 .separator {
     padding-top: 25px;
 }
 
 .clear_decoration {
     text-decoration: none;
+}
+
+.area_label {
+    text-decoration: none;
+    background: var(--blue);
+    color: #ffffff;
+    padding: .5rem;
+    border-radius: 8px;
 }

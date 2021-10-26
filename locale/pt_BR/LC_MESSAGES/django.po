@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-25 18:48-0300\n"
+"POT-Creation-Date: 2021-10-25 21:00-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -157,6 +157,10 @@ msgstr "Biblioteca Chico Leme"
 msgid "No book found"
 msgstr "Nenhum livro encontrado"
 
+#: books/templates/partials/_header.html:4
+msgid "Administrative area"
+msgstr "Área administrativa"
+
 #: books/templates/partials/_search.html:9
 msgid "Search placeholder"
 msgstr "Pesquise por ISBN, título, autor ou assunto"
@@ -173,11 +177,11 @@ msgstr "Reserve seu livro pelo Whatsapp: "
 msgid "Library number"
 msgstr "(11) 9 XXXX - XXXX"
 
-#: books/templates/partials/_search_result_item.html:24
+#: books/templates/partials/_search_result_item.html:23
 msgid "Available"
 msgstr "Disponível"
 
-#: books/templates/partials/_search_result_item.html:26
+#: books/templates/partials/_search_result_item.html:25
 msgid "Unavailable"
 msgstr "Indisponível"
 

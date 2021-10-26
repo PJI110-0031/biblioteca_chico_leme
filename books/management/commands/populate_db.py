@@ -89,7 +89,7 @@ def _populate_and_get_author(author_name: str):
     return author
 
 
-def _populate_and_get_authors(row) -> list[Author]:
+def _populate_and_get_authors(row):
     authors = []
 
     author = _populate_and_get_author(row['author_1'])
@@ -123,7 +123,7 @@ def _populate_and_get_translator(translator_name):
     return translator
 
 
-def _populate_and_get_translators(row) -> list[Translator]:
+def _populate_and_get_translators(row):
     translators = []
 
     translator = _populate_and_get_translator(row['translator_1'])
@@ -141,7 +141,7 @@ def _populate_and_get_translators(row) -> list[Translator]:
     return translators
 
 
-def _populate_and_get_subjects(shelf: Shelf) -> list[Subject]:
+def _populate_and_get_subjects(shelf: Shelf):
     if not shelf or not shelf.ddc or not shelf.ddc[:3].isnumeric():
         return []
 

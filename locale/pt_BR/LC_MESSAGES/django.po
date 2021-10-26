@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-25 21:00-0300\n"
+"POT-Creation-Date: 2021-10-26 11:13-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,134 +22,134 @@ msgstr ""
 msgid "Library"
 msgstr "Biblioteca"
 
-#: books/models.py:12 books/models.py:59 books/models.py:74 books/models.py:90
+#: books/models.py:13 books/models.py:60 books/models.py:75 books/models.py:92
 msgid "Name"
 msgstr "Nome"
 
-#: books/models.py:15 books/models.py:130
+#: books/models.py:16 books/models.py:134
 msgid "Publisher"
 msgstr "Editora"
 
-#: books/models.py:16
+#: books/models.py:17
 msgid "Publishers"
 msgstr "Editoras"
 
-#: books/models.py:27 books/models.py:43
+#: books/models.py:28 books/models.py:44
 msgid "DDC"
 msgstr "CDD"
 
-#: books/models.py:28 books/models.py:44
+#: books/models.py:29 books/models.py:45
 msgid "Description"
 msgstr "Descrição"
 
-#: books/models.py:31 books/models.py:135
+#: books/models.py:32 books/models.py:139
 msgid "Shelf"
 msgstr "Prateleira"
 
-#: books/models.py:32
+#: books/models.py:33
 msgid "Shelves"
 msgstr "Prateleiras"
 
-#: books/models.py:47
+#: books/models.py:48
 msgid "Subject"
 msgstr "Assunto"
 
-#: books/models.py:48 books/models.py:126 books/models.py:146
+#: books/models.py:49 books/models.py:129 books/models.py:150
 msgid "Subjects"
 msgstr "Assuntos"
 
-#: books/models.py:62
+#: books/models.py:63
 msgid "Translator"
 msgstr "Tradutor"
 
-#: books/models.py:63 books/models.py:124
+#: books/models.py:64 books/models.py:126
 msgid "Translators"
 msgstr "Tradutores"
 
-#: books/models.py:78 books/models.py:125
+#: books/models.py:80 books/models.py:128
 msgid "Collection"
 msgstr "Coleção"
 
-#: books/models.py:79
+#: books/models.py:81
 msgid "Collections"
 msgstr "Coleções"
 
-#: books/models.py:91
+#: books/models.py:93
 msgid "Year of birth"
 msgstr "Ano de nascimento"
 
-#: books/models.py:92
+#: books/models.py:94
 msgid "Year of death"
 msgstr "Ano de morte"
 
-#: books/models.py:93 books/models.py:134
+#: books/models.py:95 books/models.py:138
 msgid "PHA"
 msgstr "PHA"
 
-#: books/models.py:94
+#: books/models.py:96
 msgid "PHA Label"
 msgstr "PHA Etiqueta"
 
-#: books/models.py:95
+#: books/models.py:97
 msgid "Observation"
 msgstr "Observações"
 
-#: books/models.py:98 books/templates/partials/_search_result_item.html:8
+#: books/models.py:100 books/templates/partials/_search_result_item.html:8
 msgid "Author"
 msgstr "Autor"
 
-#: books/models.py:99 books/models.py:123 books/models.py:142
+#: books/models.py:101 books/models.py:125 books/models.py:146
 #: books/templates/partials/_search_result_item.html:10
 msgid "Authors"
 msgstr "Autores"
 
-#: books/models.py:121
+#: books/models.py:123
 msgid "Physical ID"
 msgstr "Tombo"
 
-#: books/models.py:122
+#: books/models.py:124
 msgid "Title"
 msgstr "Título"
 
-#: books/models.py:127
+#: books/models.py:130
 msgid "Volume"
 msgstr "Volume"
 
-#: books/models.py:128
+#: books/models.py:131
 msgid "Edition"
 msgstr "Edição"
 
-#: books/models.py:129
+#: books/models.py:132
 msgid "Local"
 msgstr "Local"
 
-#: books/models.py:131
+#: books/models.py:135
 msgid "Year"
 msgstr "Ano"
 
-#: books/models.py:132
+#: books/models.py:136
 msgid "Page count"
 msgstr "Número de páginas"
 
-#: books/models.py:133
+#: books/models.py:137
 msgid "ISBN"
 msgstr "ISBN"
 
-#: books/models.py:136
+#: books/models.py:140
 msgid "Observations"
 msgstr "Observações"
 
-#: books/models.py:139
+#: books/models.py:143
 msgid "Book"
 msgstr "Livro"
 
-#: books/models.py:140
+#: books/models.py:144
 msgid "Books"
 msgstr "Livros"
 
 #: books/templates/admin/base_site.html:4
 #: books/templates/admin/base_site.html:12 books/templates/base.html:12
-#: books/templates/partials/_header.html:7
+#: books/templates/partials/_header.html:8
 msgid "Page title"
 msgstr "Biblioteca Chico Leme"
 
@@ -157,7 +157,7 @@ msgstr "Biblioteca Chico Leme"
 msgid "No book found"
 msgstr "Nenhum livro encontrado"
 
-#: books/templates/partials/_header.html:4
+#: books/templates/partials/_header.html:5
 msgid "Administrative area"
 msgstr "Área administrativa"
 
@@ -1376,3 +1376,23 @@ msgstr ""
 #: venv/lib/python3.9/site-packages/django/views/templates/default_urlconf.html:249
 msgid "Connect, get help, or contribute"
 msgstr ""
+
+#: venv/lib/python3.9/site-packages/isbn_field/fields.py:8
+msgid "ISBN-10 or ISBN-13"
+msgstr "ISBN-10 ou ISBN-13"
+
+#: venv/lib/python3.9/site-packages/isbn_field/validators.py:12
+msgid "Invalid ISBN: Not a string"
+msgstr "Não é um texto"
+
+#: venv/lib/python3.9/site-packages/isbn_field/validators.py:15
+msgid "Invalid ISBN: Wrong length"
+msgstr "Tamanho inválido"
+
+#: venv/lib/python3.9/site-packages/isbn_field/validators.py:18
+msgid "Invalid ISBN: Failed checksum"
+msgstr "Valor inválido"
+
+#: venv/lib/python3.9/site-packages/isbn_field/validators.py:21
+msgid "Invalid ISBN: Only upper case allowed"
+msgstr "Só são permitidos valores em maiúsculo"

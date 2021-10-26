@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.db import models
 from django.db.models import Q, QuerySet
 from django.utils.translation import ugettext_lazy as _
+from isbn_field import ISBNField
 
 
 def _bound_text(text, limit=100):
@@ -25,7 +26,7 @@ class Publisher(models.Model):
 
 class Shelf(models.Model):
     ddc = models.CharField(blank=True, null=True, max_length=10, verbose_name=_('DDC'))
-    description = models.CharField(max_length=256, verbose_name=_('Description'))
+    description = models.CharField(max_length=1024, verbose_name=_('Description'))
 
     class Meta:
         verbose_name = _('Shelf')
@@ -124,14 +125,14 @@ class Book(models.Model):
     translators = models.ManyToManyField(Translator, blank=True, verbose_name=_('Translators'))
     collection = models.ForeignKey(Collection, on_delete=models.PROTECT, blank=True, null=True, verbose_name=_('Collection'))
     subjects = models.ManyToManyField(Subject, verbose_name=_('Subjects'))
-    volume = models.CharField(max_length=10, blank=True, null=True, verbose_name=_('Volume'))
+    volume = models.CharField(max_length=100, blank=True, null=True, verbose_name=_('Volume'))
     edition = models.PositiveIntegerField(blank=True, null=True, verbose_name=_('Edition'))
     local = models.CharField(max_length=100, blank=True, null=True, verbose_name=_('Local'))
     publisher = models.ForeignKey(Publisher, on_delete=models.PROTECT, blank=True, null=True, verbose_name=_('Publisher'))
     year = models.IntegerField(blank=True, null=True, verbose_name=_('Year'))
-    page_count = models.CharField(max_length=12, blank=True, null=True, verbose_name=_('Page count'))
-    isbn = models.CharField(max_length=13, blank=True, null=True, verbose_name=_('ISBN'))
-    pha = models.CharField(max_length=20, blank=True, null=True, verbose_name=_('PHA'))
+    page_count = models.CharField(max_length=50, blank=True, null=True, verbose_name=_('Page count'))
+    isbn = ISBNField(blank=True, null=True, verbose_name=_('ISBN'))
+    pha = models.CharField(max_length=50, blank=True, null=True, verbose_name=_('PHA'))
     shelf = models.ForeignKey(Shelf, on_delete=models.PROTECT, blank=True, null=True, verbose_name=_('Shelf'))
     observations = models.TextField(max_length=2048, blank=True, null=True, verbose_name=_('Observations'))
 

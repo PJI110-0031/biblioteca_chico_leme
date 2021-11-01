@@ -29,8 +29,8 @@ class Shelf(models.Model):
     description = models.CharField(max_length=1024, verbose_name=_('Description'))
 
     class Meta:
-        verbose_name = _('Shelf')
-        verbose_name_plural = _('Shelves')
+        verbose_name = _('Subject')
+        verbose_name_plural = _('Subjects')
 
     def __str__(self):
         return _bound_text(f"{self.ddc + ' - ' if self.ddc else ''} {self.description}")
@@ -116,7 +116,7 @@ class Book(models.Model):
     page_count = models.CharField(max_length=50, blank=True, null=True, verbose_name=_('Page count'))
     isbn = ISBNField(blank=True, null=True, verbose_name=_('ISBN'))
     pha = models.CharField(max_length=50, blank=True, null=True, verbose_name=_('PHA'))
-    shelf = models.ForeignKey(Shelf, on_delete=models.PROTECT, blank=True, null=True, verbose_name=_('Shelf'))
+    shelf = models.ForeignKey(Shelf, on_delete=models.PROTECT, blank=True, null=True, verbose_name=_('Subject'))
     observations = models.TextField(max_length=2048, blank=True, null=True, verbose_name=_('Observations'))
 
     class Meta:

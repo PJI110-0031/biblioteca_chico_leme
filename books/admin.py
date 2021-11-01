@@ -15,11 +15,6 @@ class ShelfAdmin(DefaultModelAdmin):
     ordering = ('ddc',)
 
 
-class SubjectAdmin(DefaultModelAdmin):
-    search_fields = ('ddc', 'description',)
-    ordering = ('ddc',)
-
-
 class TranslatorAdmin(DefaultModelAdmin):
     search_fields = ('name',)
     ordering = ('name',)
@@ -43,7 +38,6 @@ class BookAdmin(DefaultModelAdmin):
         'authors_str',
         'edition',
         'year',
-        'subjects_str',
         'shelf',
         'publisher',
         'collection',
@@ -56,17 +50,14 @@ class BookAdmin(DefaultModelAdmin):
         'pha',
         'observations',
         'authors__name',
-        'subjects__ddc',
-        'subjects__description',
         'publisher__name',
         'collection__name',
     )
-    filter_horizontal = ('authors', 'translators', 'subjects',)
+    filter_horizontal = ('authors', 'translators',)
 
 
 admin.site.register(Publisher, PublisherAdmin)
 admin.site.register(Shelf, ShelfAdmin)
-admin.site.register(Subject, SubjectAdmin)
 admin.site.register(Translator, TranslatorAdmin)
 admin.site.register(Collection, CollectionAdmin)
 admin.site.register(Author, AuthorAdmin)

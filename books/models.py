@@ -33,27 +33,11 @@ class Shelf(models.Model):
         verbose_name_plural = _('Shelves')
 
     def __str__(self):
-        return _bound_text(f"{_('Shelf')} {self.ddc + ' - ' if self.ddc else ''} {self.description}")
+        return _bound_text(f"{self.ddc + ' - ' if self.ddc else ''} {self.description}")
 
     @staticmethod
     def find_equals(other) -> QuerySet:
         return Shelf.objects.filter(ddc=other.ddc, description=other.description)
-
-
-class Subject(models.Model):
-    ddc = models.CharField(max_length=10, primary_key=True, verbose_name=_('DDC'))
-    description = models.CharField(max_length=256, verbose_name=_('Description'))
-
-    class Meta:
-        verbose_name = _('Subject')
-        verbose_name_plural = _('Subjects')
-
-    def __str__(self):
-        return f'{self.ddc} {self.description}'
-
-    @staticmethod
-    def find_equals(other) -> QuerySet:
-        return Subject.objects.filter(ddc=other.ddc, description=other.description)
 
 
 class Translator(models.Model):
@@ -124,7 +108,6 @@ class Book(models.Model):
     authors = models.ManyToManyField(Author, verbose_name=_('Authors'))
     translators = models.ManyToManyField(Translator, blank=True, verbose_name=_('Translators'))
     collection = models.ForeignKey(Collection, on_delete=models.PROTECT, blank=True, null=True, verbose_name=_('Collection'))
-    subjects = models.ManyToManyField(Subject, verbose_name=_('Subjects'))
     volume = models.CharField(max_length=100, blank=True, null=True, verbose_name=_('Volume'))
     edition = models.PositiveIntegerField(blank=True, null=True, verbose_name=_('Edition'))
     local = models.CharField(max_length=100, blank=True, null=True, verbose_name=_('Local'))
@@ -144,10 +127,6 @@ class Book(models.Model):
     def authors_str(self):
         return ' | '.join([str(author) for author in self.authors.all()])
 
-    @admin.display(description=_('Subjects'))
-    def subjects_str(self):
-        return ' | '.join(str(subject) for subject in self.subjects.all())
-
     def infos(self):
         infos = []
 
@@ -156,9 +135,6 @@ class Book(models.Model):
 
         if self.collection:
             infos.append(f"{_('Collection')}: {self.collection}")
-
-        if self.subjects:
-            infos.append(f"{_('Subjects')}: {self.subjects_str()}")
 
         return infos
 
@@ -172,12 +148,11 @@ class Book(models.Model):
             Q(title__icontains=search_text) |
             Q(authors__name__icontains=search_text) |
             Q(authors__observation__icontains=search_text) |
-            Q(collection__name__icontains=search_text) |
-            Q(subjects__description__icontains=search_text)
+            Q(collection__name__icontains=search_text)
         ).distinct()
 
     @staticmethod
-    def find_equals(other, authors, translators, subjects) -> QuerySet:
+    def find_equals(other, authors, translators) -> QuerySet:
         query = Q()
         query.add(Q(physical_id=other.physical_id), Q.AND)
         query.add(Q(title=other.title), Q.AND)
@@ -198,8 +173,5 @@ class Book(models.Model):
 
         if translators:
             query.add(Q(translators__name__in=[translator.name for translator in translators]), Q.AND)
-
-        if subjects:
-            query.add(Q(subjects__description__in=[subject.description for subject in subjects]), Q.AND)
 
         return Book.objects.filter(query)

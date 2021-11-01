@@ -141,16 +141,6 @@ def _populate_and_get_translators(row):
     return translators
 
 
-def _populate_and_get_subjects(shelf: Shelf):
-    if not shelf or not shelf.ddc or not shelf.ddc[:3].isnumeric():
-        return []
-
-    ddc = shelf.ddc[:3]
-    ddc = '0' * (3 - len(ddc)) + ddc
-
-    return Subject.objects.filter(ddc__in=[ddc, ddc[:2] + '0', ddc[:1] + '00']).all()
-
-
 class Command(BaseCommand):
     help = 'Populate database with default values'
     base_dir = Path(settings.BASE_DIR, 'books/management/commands')
@@ -203,26 +193,6 @@ class Command(BaseCommand):
                 if not Author.find_equals(author).exists():
                     author.save()
 
-    def _populate_subjects(self):
-        info('Populating subjects...')
-
-        with self._open_csv('csv/subjects.csv') as csv_file:
-            csv_reader = csv.DictReader(csv_file)
-
-            for row in csv_reader:
-                debug(f'Processing subject data {row}')
-
-                ddc = _normalize_data(row['ddc'])
-                description = _normalize_data(row['description'])
-
-                subject = Subject(
-                    ddc=ddc,
-                    description=description,
-                )
-
-                if not Subject.find_equals(subject).exists():
-                    subject.save()
-
     def _populate_books(self):
         info('Populating books...')
 
@@ -256,7 +226,6 @@ class Command(BaseCommand):
 
                 authors = _populate_and_get_authors(row)
                 translators = _populate_and_get_translators(row)
-                subjects = _populate_and_get_subjects(shelf)
 
                 book = Book(
                     physical_id=physical_id,
@@ -282,7 +251,7 @@ class Command(BaseCommand):
                     warning(f'Book with physical id {physical_id} already exists, skipping...')
                     continue
 
-                if not Book.find_equals(book, authors, translators, subjects).exists():
+                if not Book.find_equals(book, authors, translators).exists():
                     book.save()
 
                     if authors:
@@ -291,15 +260,11 @@ class Command(BaseCommand):
                     if translators:
                         [book.translators.add(translator) for translator in translators]
 
-                    if subjects:
-                        [book.subjects.add(subject) for subject in subjects]
-
                     book.save()
 
     def _populate_database(self):
         self._populate_shelves()
         self._populate_authors()
-        self._populate_subjects()
         self._populate_books()
 
     def handle(self, *args, **options):

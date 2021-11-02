@@ -1,3 +1,4 @@
+from .forms import BookForm
 from .models import *
 
 
@@ -61,4 +62,4 @@ admin.site.register(Shelf, ShelfAdmin)
 admin.site.register(Translator, TranslatorAdmin)
 admin.site.register(Collection, CollectionAdmin)
 admin.site.register(Author, AuthorAdmin)
-admin.site.register(Book, BookAdmin)
+admin.site.register(Book, BookAdmin, form=BookForm)

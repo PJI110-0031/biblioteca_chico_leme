@@ -141,14 +141,26 @@ class Book(models.Model):
     def authors_str(self):
         return ' | '.join([str(author) for author in self.authors.all()])
 
+    @admin.display(description=_('Translators'))
+    def translators_str(self):
+        return ' | '.join([str(translator) for translator in self.translators.all()])
+
     def infos(self):
         infos = []
 
         if self.isbn:
             infos.append(f"{_('ISBN')}: {self.isbn}")
 
+        if self.publisher:
+            infos.append(f"{_('Publisher')}: {self.publisher}")
+
         if self.collection:
             infos.append(f"{_('Collection')}: {self.collection}")
+
+        translators_count = self.translators.count()
+        if translators_count > 0:
+            translator_prefix = _('Translator' if translators_count == 1 else 'Translators')
+            infos.append(f"{translator_prefix}: {self.translators_str()}")
 
         return infos
 

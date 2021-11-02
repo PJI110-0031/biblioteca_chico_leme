@@ -1,3 +1,4 @@
+from django.db.models import Max
 from django.contrib import admin
 from django.db import models
 from django.db.models import Q, QuerySet
@@ -175,3 +176,7 @@ class Book(models.Model):
             query.add(Q(translators__name__in=[translator.name for translator in translators]), Q.AND)
 
         return Book.objects.filter(query)
+
+    @staticmethod
+    def next_physical_id():
+        return Book.objects.aggregate(Max('physical_id'))['physical_id__max'] + 1

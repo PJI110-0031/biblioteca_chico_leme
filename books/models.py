@@ -124,6 +124,19 @@ class Book(models.Model):
         verbose_name = _('Book')
         verbose_name_plural = _('Books')
 
+    @admin.display(description=_('Title'))
+    def title_str(self):
+
+        data = [self.title]
+
+        if self.volume:
+            data.append(f"{_('Volume')} {self.volume}")
+
+        if self.edition:
+            data.append(f"{_('Edition')} {self.edition}")
+
+        return ' | '.join(data)
+
     @admin.display(description=_('Authors'))
     def authors_str(self):
         return ' | '.join([str(author) for author in self.authors.all()])

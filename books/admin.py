@@ -34,16 +34,13 @@ class AuthorAdmin(DefaultModelAdmin):
 class BookAdmin(DefaultModelAdmin):
     list_display = (
         'physical_id',
-        'isbn',
-        'title',
+        'title_str',
         'authors_str',
-        'edition',
-        'year',
         'shelf',
         'publisher',
         'collection',
     )
-    list_display_links = ('physical_id', 'isbn', 'title',)
+    list_display_links = ('physical_id', 'title_str',)
     search_fields = (
         'physical_id',
         'title',

@@ -52,6 +52,7 @@ class BookAdmin(DefaultModelAdmin):
         'collection__name',
     )
     autocomplete_fields = ('collection', 'publisher', 'shelf', 'authors', 'translators',)
+    list_filter = ('status',)
 
 
 admin.site.register(Publisher, PublisherAdmin)

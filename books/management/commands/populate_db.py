@@ -141,6 +141,19 @@ def _populate_and_get_translators(row):
     return translators
 
 
+def _get_status(raw_status):
+    if not raw_status:
+        return None
+
+    elif re.match(r'arquivo morto', raw_status, re.IGNORECASE):
+        return BookStatus.archived
+
+    elif re.match(r'livro sumido', raw_status, re.IGNORECASE):
+        return BookStatus.lost_by_user
+
+    return None
+
+
 class Command(BaseCommand):
     help = 'Populate database with default values'
     base_dir = Path(settings.BASE_DIR, 'books/management/commands')
@@ -227,6 +240,8 @@ class Command(BaseCommand):
                 authors = _populate_and_get_authors(row)
                 translators = _populate_and_get_translators(row)
 
+                status = _get_status(observation_1)
+
                 book = Book(
                     physical_id=physical_id,
                     title=title,
@@ -241,6 +256,7 @@ class Command(BaseCommand):
                     pha=pha,
                     shelf=shelf,
                     observations=observations,
+                    status=status,
                 )
 
                 if not title:

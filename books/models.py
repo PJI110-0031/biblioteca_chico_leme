@@ -204,4 +204,5 @@ class Book(models.Model):
 
     @staticmethod
     def next_physical_id():
-        return Book.objects.aggregate(Max('physical_id'))['physical_id__max'] + 1
+        max_id = Book.objects.aggregate(Max('physical_id'))['physical_id__max']
+        return max_id + 1 if max_id else 1

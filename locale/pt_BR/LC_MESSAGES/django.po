@@ -100,18 +100,22 @@ msgid "Authors"
 msgstr "Autores(as)"
 
 #: books/models.py:108
+msgid "Circulant"
+msgstr "Circulante"
+
+#: books/models.py:109
 msgid "Archived"
 msgstr "Arquivo morto"
 
-#: books/models.py:109
+#: books/models.py:110
 msgid "Downed / Lost by user"
 msgstr "Baixado / Perdido pelo usuário"
 
-#: books/models.py:110
+#: books/models.py:111
 msgid "Downed / Defective book"
 msgstr "Baixado / Livro com defeito"
 
-#: books/models.py:111
+#: books/models.py:112
 msgid "Not circulant"
 msgstr "Não circulante"
 

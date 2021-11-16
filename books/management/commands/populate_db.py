@@ -143,7 +143,7 @@ def _populate_and_get_translators(row):
 
 def _get_status(raw_status):
     if not raw_status:
-        return None
+        return BookStatus.circulant
 
     elif re.match(r'arquivo morto', raw_status, re.IGNORECASE):
         return BookStatus.archived
@@ -151,7 +151,7 @@ def _get_status(raw_status):
     elif re.match(r'livro sumido', raw_status, re.IGNORECASE):
         return BookStatus.lost_by_user
 
-    return None
+    return BookStatus.circulant
 
 
 class Command(BaseCommand):

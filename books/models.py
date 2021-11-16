@@ -105,6 +105,7 @@ class Author(models.Model):
 
 
 class BookStatus(Enum):
+    circulant = 'Circulant'
     archived = 'Archived'
     lost_by_user = 'Downed / Lost by user'
     defective = 'Downed / Defective book'
@@ -131,7 +132,7 @@ class Book(models.Model):
     pha = models.CharField(max_length=50, blank=True, null=True, verbose_name=_('PHA'))
     shelf = models.ForeignKey(Shelf, on_delete=models.PROTECT, blank=True, null=True, verbose_name=_('Subject'))
     observations = models.TextField(max_length=2048, blank=True, null=True, verbose_name=_('Observations'))
-    status = models.CharField(max_length=1, choices=BookStatus.choices(), blank=True, null=True, verbose_name=_('Status'))
+    status = models.CharField(max_length=1, choices=BookStatus.choices(), verbose_name=_('Status'), default=BookStatus.circulant)
 
     class Meta:
         verbose_name = _('Book')

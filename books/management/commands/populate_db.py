@@ -141,6 +141,40 @@ def _populate_and_get_translators(row):
     return translators
 
 
+def _get_title_volume_edition(row):
+    title = _normalize_data(row['title'])
+    volume = _normalize_data(row['volume'])
+    edition = _normalize_data(row['edition'])
+    edition = edition if edition and edition.isnumeric() else None
+
+    t_volume = None
+    t_edition = None
+
+    if title:
+        t_volume = re.search(r'[:]* volume \d+', title, re.IGNORECASE)
+        t_edition = re.search(r'[:]* edi[cç][aã]o \d+', title, re.IGNORECASE)
+
+    if t_volume:
+        t_volume = t_volume.group()
+        title = title.replace(t_volume, '')
+
+        t_volume = re.sub(r'[^\d]', '', t_volume)
+
+        if not volume:
+            volume = t_volume
+
+    if t_edition:
+        t_edition = t_edition.group()
+        title = title.replace(t_edition, '')
+
+        t_edition = re.sub(r'[^\d]', '', t_edition)
+
+        if not edition:
+            edition = t_edition
+
+    return _normalize_data(title), _normalize_data(volume), _normalize_data(edition)
+
+
 class Command(BaseCommand):
     help = 'Populate database with default values'
     base_dir = Path(settings.BASE_DIR, 'books/management/commands')
@@ -203,15 +237,11 @@ class Command(BaseCommand):
                 debug(f'Processing book data {row}')
 
                 physical_id = _normalize_data(row['physical_id'])
-                title = _normalize_data(row['title'])
-                volume = _normalize_data(row['volume'])
+                title, volume, edition = _get_title_volume_edition(row)
                 local = _normalize_data(row['local'])
                 page_count = _normalize_data(row['page_count'])
                 isbn = _normalize_data(row['isbn'])
                 pha = _normalize_data(row['pha'])
-
-                edition = _normalize_data(row['edition'])
-                edition = edition if edition and edition.isnumeric() else None
 
                 year = _normalize_data(re.sub(r'[\[\]]', '', row['year']))
                 year = year if year and year.isnumeric() else None

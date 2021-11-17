@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-02 17:15-0300\n"
+"POT-Creation-Date: 2021-11-02 21:29-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,120 +22,144 @@ msgstr ""
 msgid "Library"
 msgstr "Biblioteca"
 
-#: books/forms.py:8 books/models.py:107
+#: books/forms.py:8 books/models.py:119
 msgid "Physical ID"
 msgstr "Tombo"
 
-#: books/models.py:14 books/models.py:45 books/models.py:60 books/models.py:76
+#: books/models.py:15 books/models.py:46 books/models.py:61 books/models.py:77
 msgid "Name"
 msgstr "Nome"
 
-#: books/models.py:17 books/models.py:115
+#: books/models.py:18 books/models.py:127
 msgid "Publisher"
 msgstr "Editora"
 
-#: books/models.py:18
+#: books/models.py:19
 msgid "Publishers"
 msgstr "Editoras"
 
-#: books/models.py:29
+#: books/models.py:30
 msgid "DDC"
 msgstr "CDD"
 
-#: books/models.py:30
+#: books/models.py:31
 msgid "Description"
 msgstr "Descrição"
 
-#: books/models.py:33 books/models.py:120
+#: books/models.py:34 books/models.py:132
 msgid "Subject"
 msgstr "Assunto"
 
-#: books/models.py:34
+#: books/models.py:35
 msgid "Subjects"
 msgstr "Assuntos"
 
-#: books/models.py:48 books/models.py:162
+#: books/models.py:49 books/models.py:175
 msgid "Translator"
 msgstr "Tradutor(a)"
 
-#: books/models.py:49 books/models.py:110 books/models.py:144
+#: books/models.py:50 books/models.py:122 books/models.py:157
 msgid "Translators"
 msgstr "Tradutores(as)"
 
-#: books/models.py:64 books/models.py:111
+#: books/models.py:65 books/models.py:123
 msgid "Collection"
 msgstr "Coleção"
 
-#: books/models.py:65
+#: books/models.py:66
 msgid "Collections"
 msgstr "Coleções"
 
-#: books/models.py:77
+#: books/models.py:78
 msgid "Year of birth"
 msgstr "Ano de nascimento"
 
-#: books/models.py:78
+#: books/models.py:79
 msgid "Year of death"
 msgstr "Ano de morte"
 
-#: books/models.py:79 books/models.py:119
+#: books/models.py:80 books/models.py:131
 msgid "PHA"
 msgstr "PHA"
 
-#: books/models.py:80
+#: books/models.py:81
 msgid "PHA Label"
 msgstr "PHA Etiqueta"
 
-#: books/models.py:81
+#: books/models.py:82
 msgid "Observation"
 msgstr "Observações"
 
-#: books/models.py:84 books/templates/partials/_search_result_item.html:8
+#: books/models.py:85 books/templates/partials/_search_result_item.html:8
 msgid "Author"
 msgstr "Autor(a)"
 
-#: books/models.py:85 books/models.py:109 books/models.py:140
+#: books/models.py:86 books/models.py:121 books/models.py:153
 #: books/templates/partials/_search_result_item.html:10
 msgid "Authors"
 msgstr "Autores(as)"
 
-#: books/models.py:108 books/models.py:127
+#: books/models.py:108
+msgid "Circulant"
+msgstr "Circulante"
+
+#: books/models.py:109
+msgid "Archived"
+msgstr "Arquivo morto"
+
+#: books/models.py:110
+msgid "Downed / Lost by user"
+msgstr "Baixado / Perdido pelo usuário"
+
+#: books/models.py:111
+msgid "Downed / Defective book"
+msgstr "Baixado / Livro com defeito"
+
+#: books/models.py:112
+msgid "Not circulant"
+msgstr "Não circulante"
+
+#: books/models.py:120 books/models.py:140
 msgid "Title"
 msgstr "Título"
 
-#: books/models.py:112
+#: books/models.py:124
 msgid "Volume"
 msgstr "Volume"
 
-#: books/models.py:113
+#: books/models.py:125
 msgid "Edition"
 msgstr "Edição"
 
-#: books/models.py:114
+#: books/models.py:126
 msgid "Local"
 msgstr "Local"
 
-#: books/models.py:116
+#: books/models.py:128
 msgid "Year"
 msgstr "Ano"
 
-#: books/models.py:117
+#: books/models.py:129
 msgid "Page count"
 msgstr "Número de páginas"
 
-#: books/models.py:118
+#: books/models.py:130
 msgid "ISBN"
 msgstr "ISBN"
 
-#: books/models.py:121
+#: books/models.py:133
 msgid "Observations"
 msgstr "Observações"
 
-#: books/models.py:124
+#: books/models.py:134
+msgid "Status"
+msgstr "Estado"
+
+#: books/models.py:137
 msgid "Book"
 msgstr "Livro"
 
-#: books/models.py:125
+#: books/models.py:138
 msgid "Books"
 msgstr "Livros"
 

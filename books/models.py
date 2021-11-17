@@ -1,7 +1,8 @@
-from django.db.models import Max
+from enum import Enum
+
 from django.contrib import admin
 from django.db import models
-from django.db.models import Q, QuerySet
+from django.db.models import Q, QuerySet, Max
 from django.utils.translation import ugettext_lazy as _
 from isbn_field import ISBNField
 
@@ -103,6 +104,18 @@ class Author(models.Model):
         return Author.objects.filter(Q(name__iexact=author_name))
 
 
+class BookStatus(Enum):
+    circulant = 'Circulant'
+    archived = 'Archived'
+    lost_by_user = 'Downed / Lost by user'
+    defective = 'Downed / Defective book'
+    not_circulant = 'Not circulant'
+
+    @staticmethod
+    def choices():
+        return [(status, _(status.value)) for status in BookStatus]
+
+
 class Book(models.Model):
     physical_id = models.PositiveIntegerField(unique=True, verbose_name=_('Physical ID'))
     title = models.CharField(max_length=1024, verbose_name=_('Title'))
@@ -119,6 +132,7 @@ class Book(models.Model):
     pha = models.CharField(max_length=50, blank=True, null=True, verbose_name=_('PHA'))
     shelf = models.ForeignKey(Shelf, on_delete=models.PROTECT, blank=True, null=True, verbose_name=_('Subject'))
     observations = models.TextField(max_length=2048, blank=True, null=True, verbose_name=_('Observations'))
+    status = models.CharField(max_length=1, choices=BookStatus.choices(), verbose_name=_('Status'), default=BookStatus.circulant)
 
     class Meta:
         verbose_name = _('Book')
@@ -174,7 +188,8 @@ class Book(models.Model):
             Q(title__icontains=search_text) |
             Q(authors__name__icontains=search_text) |
             Q(authors__observation__icontains=search_text) |
-            Q(collection__name__icontains=search_text)
+            Q(collection__name__icontains=search_text),
+            Q(status__isnull=True)
         ).distinct()
 
     @staticmethod

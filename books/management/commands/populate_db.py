@@ -175,6 +175,19 @@ def _get_title_volume_edition(row):
     return _normalize_data(title), _normalize_data(volume), _normalize_data(edition)
 
 
+def _get_status(raw_status):
+    if not raw_status:
+        return BookStatus.circulant
+
+    elif re.match(r'arquivo morto', raw_status, re.IGNORECASE):
+        return BookStatus.archived
+
+    elif re.match(r'livro sumido', raw_status, re.IGNORECASE):
+        return BookStatus.lost_by_user
+
+    return BookStatus.circulant
+
+
 class Command(BaseCommand):
     help = 'Populate database with default values'
     base_dir = Path(settings.BASE_DIR, 'books/management/commands')
@@ -257,6 +270,8 @@ class Command(BaseCommand):
                 authors = _populate_and_get_authors(row)
                 translators = _populate_and_get_translators(row)
 
+                status = _get_status(observation_1)
+
                 book = Book(
                     physical_id=physical_id,
                     title=title,
@@ -271,6 +286,7 @@ class Command(BaseCommand):
                     pha=pha,
                     shelf=shelf,
                     observations=observations,
+                    status=status,
                 )
 
                 if not title:

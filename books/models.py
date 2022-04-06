@@ -188,7 +188,7 @@ class Book(models.Model):
             Q(title__icontains=search_text) |
             Q(authors__name__icontains=search_text) |
             Q(authors__observation__icontains=search_text) |
-            Q(collection__name__icontains=search_text),
+            Q(collection__name__icontains=search_text) |
             Q(status__isnull=True)
         ).distinct()
 
